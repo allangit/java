@@ -1,0 +1,387 @@
+\documentclass[times,12pt]{article}
+
+\setcounter{secnumdepth}{3} %para que ponga 1.1.1.1 en subsubsecciones
+\setcounter{tocdepth}{3} % para que ponga subsubsecciones en el indice
+
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{xcolor}
+% Definindo novas cores
+\definecolor{verde}{rgb}{0.25,0.5,0.35}
+\definecolor{jpurple}{rgb}{0.5,0,0.35}
+% Configurando layout para mostrar codigos Java
+\usepackage{listings}
+\lstset{
+  language=Java,
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{jpurple}\bfseries,
+  stringstyle=\color{red},
+  commentstyle=\color{verde},
+  morecomment=[s][\color{blue}]{/**}{*/},
+  extendedchars=true,
+  showspaces=false,
+  showstringspaces=false,
+  numbers=left,
+  numberstyle=\tiny,
+  breaklines=true,
+  backgroundcolor=\color{cyan!10},
+  breakautoindent=true,
+  captionpos=b,
+  xleftmargin=0pt,
+  tabsize=5
+}
+\pagestyle{empty}
+
+
+
+
+
+
+
+%\documentclass{article}
+
+%\usepackage{minted}
+\usepackage{fancyhdr}
+\usepackage{listings}
+%\usepackage{minted}
+
+\fancyhead[R]{2015}
+\fancyhead[L]{Tarea 1 proyecto programado: Conversor de unidades}
+ \fancyfoot[C]{\thepage}
+\pagestyle{fancy}
+% -------------------------------------------------------------------------------- 
+% This first part of the file is called the PREAMBLE. It includes
+% customizations and command definitions. The preamble is everything
+% between \documentclass and \begin{document}.
+%\usepackage{times}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage[margin=1in]{geometry}  % set the margins to 1in on all sides
+\usepackage{graphicx}              % to include figures
+\usepackage{amsmath}               % great math stuff
+\usepackage{amsfonts}              % for blackboard bold, etc
+\usepackage{amsthm}                % better theorem environments
+
+\begin{document}
+
+
+
+\begin{titlepage}
+\begin{figure}[ht]
+\begin{center}
+\vspace{1.5cm}
+% Aquí se inserta un escudo o emblema:
+\includegraphics[height=2cm]{/home/allan/Pictures/pedo.png}
+\label{escudouam1}
+\vspace{-1cm}
+\end{center}
+\end{figure}
+\begin{center}
+\textbf {Universidad Estatal a Distancia \\
+Bachillerato en Ingenier\'ia Inform\'atica}
+
+\vspace{1.5cm} {\LARGE Tarea Programada: Conversor de Unidades }
+
+
+% Incrementamos el interlineado:
+\vspace{1.5cm} {\LARGE 00824 Programaci\'on Intermedia}
+
+\begin{figure}[h]
+\begin{center}
+\vspace{0.8cm}
+% Otro logotipo:
+\includegraphics[scale=0.5]{/home/allan/Pictures/pedio.png}
+\label{escudocaja}
+\vspace{-1cm}
+\end{center}
+\end{figure}
+
+% Restauramos el interlineado:
+\vspace{1.3cm} {\LARGE Profesor Jorge Calvo Solano}\\
+\vspace{1.3cm} {\LARGE Alumno Alan Manuel Mart\'inez Bola\~nos} \\
+
+
+\vspace{2.3cm} Cartago, 2015
+\end{center}
+\end{titlepage}
+
+
+
+
+
+\makeatletter       %%%   INICIO DE UNA DEFINICION A BAJO NIVEL
+\renewcommand\tableofcontents{%
+    \if@twocolumn
+      \@restonecoltrue\onecolumn
+    \else
+      \@restonecolfalse
+    \fi
+            \begin{center}      %%%   Lo quieres centrado, no ?
+            \Large              %%%   Experimenta hasta encontrar el tamaño que desees
+            \bfseries           %%%   Por si quieres negrita; si no, quita esta línea
+            \contentsname       %%%   El "nombre" del capítulo, que tú has definido
+            \end{center}        %%%
+            \addvspace{1cm}     %%%   Añade o quita espacio vertical según desees
+    \@mkboth{%
+       \MakeUppercase\contentsname}{\MakeUppercase\contentsname}}        %%%  para las headlines
+    \@starttoc{toc}             %%%  Aquí se produce la tabla de contenidos realmente
+    \if@restonecol\twocolumn\fi
+   \vspace{20.8cm}
+ 
+\makeatother
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%\renewcommand{\refname}{Bibliograf\'ia}
+
+
+\begin{abstract}
+Java, conversor,excepciones,men\'u,submenu funciones, m\'odulos, bibliotecas, algoritmo,POO, interfaz.
+\end{abstract}
+
+\section{Introducci\'on}
+
+
+El presente proyecto trato sobre un conversor de unidades desarrollado en java en ambiente linux, para lo cual se usaron las bibliotecas que nos brinda java, entre las cuales podemos mencionar las siguientes: java.math.BigDecimal, java.util.Scanner, java.io.File, java.awt.Desktop. Estas herramientas fueron de gran importancia en la ejecuci\'on del proyecto ya que nos permitieron accesar a la introducci\'on de datos y el tratamiento de las unidades mediante consola.
+
+\section{Contenidos}
+\label{sect:basics}
+
+
+\subsection{Descripci\'on del enunciado del programa}
+
+Hacer un programa que implemente un conversor de unidades, es decir un programa que nos permita convertir una unidad dada, en el sistema internacional de unidades a su equivalente, en otra unidad en mismo sistema. Esta medici\'on se realiz\'o introduciendo los datos mediante la linea de consola de linux. El programa tendr\'a un men\'u principal que nos permite acceder a la unidad de medida origen que el usuario introduce mediante la linea de consola, una vez digitada la opci\'on, se desplegara un submenu que nos brindara la unidad de medida destino.
+
+
+\subsection{Principios de Funcionamiento} 
+
+
+\subsection{M\'etodos}
+
+Nos permiten que la aplicaci\'on realice funciones a la cual est\'a destinado, este caso nos permite hacer las conversiones entre las unidades y propocionarnos los resultados esperados, para la tarea se implementaron varios m\'etodo dentro de los cuales podemos citar los siguientes:men\'u principal, submenus, unidad generica.Los cuales se explicaran de forma detallada en el presente informe.\\ 
+
+
+\subsection{Conversor de Unidades}
+\label{subsect:typing}
+
+Para iniciar el conversor de unidades usted ocupa de los archivos funciones.java, conversi\'on.java  as\'i  como de las imagenes que se van a encontrar en la carpeta adjunta donde se ubica el proyecto programado , una vez verificado este punto compile el proyecto en java.\\
+
+1. Para iniciar el conversor de unidades, abrir la terminal de linux y ejecute, en la terminal javac, y el nombre del proyecto en este caso javac conversor.java .Una vez ejecutado este comando, se genera en la misma carpeta un archivo llamado conversor.class. Este archivo conversor.class se ejecuta en la misma terminal con el siguiente comando java conversor \\
+
+2. Una vez ejecutado el archivo conversor, se abrira el proyecto con el men\'u principal. Este men\'u cuenta con las unidades origen, salir del programa, y una alternativa de ver el manual de usuario en linea y las opciones que debe de ingresar el usuario para seleccionarlas.\\
+
+3. Cuando se digitada cualquier  opci\'on origen (unidad de medida), se abrira un submenu que le indicara al usuario o cliente, cual es la unidad destino.\\
+
+4. Una vez digitada la opc\'on destino el programa le indica al usuario que digite la cantidad origen y desp\'ues el programa le indicara su equivalente en la unidad destino.\\
+
+5. El conversor tambi\'en cuenta con la alternativa de salir del programa, que le permite al usuario salir de la aplicaci\'on.\\
+
+6. El proyecto programando cuenta con una funcionalidad, que nos permite ver en linea el manual de usuario, est\'a opci\'on se puede obsevar en el men\'u principal.\\
+
+
+\subsection{Menu Principal}
+
+Es una parte del proyecto muy importante ya le brinda al usuario o cliente una guia de como se utiliza la aplicaci\'on, cuales son sus alcances y sus restrinciones.\\ 
+
+\subsection{SubMenu}
+
+Es la segunda en importancia ya que al igual, que el men\'u principal le brinda al usuario, cuales son los pasos siguientes para llegar al objetivo final es que en este caso es visualizar la conversi\'on de la unidad origen a su equivalente en la unidad destino.\\ 
+
+\subsection{Unidad Gen\'erica}
+
+Es uno de los principales m\'odulos, le permite al usuario introducir los datos, y pasarlos a otras funciones con el objetivo permitir el proceso de conversi\'on de la unidad de medida origen a la unidad de medida destino.\\ 
+
+\subsection{Manejo de Excepciones}
+Esta es una parte muy importante del proyecto ya que nos permite validar, el funcionamiento de cualquier aplicaci\'on, y brindarle al usuario una orientaci\'on acerca de las restrinciones del proyecto, para esta tarea se van a validar los siguientes aspectos: si el usuario introdujo un string ya se letra, o un  n\'umero dentro de comillas lo cual se considerara tipo string. Uno de las consideraciones que se debe de tomar en cuenta y que requiere m\'as trabajo en la implementaci\'on de excepciones es analizar cuales son tadas las restrinciones que se pueden presentar en un proyecto programado .\\ 
+
+
+
+%\begin{figure}[ht]
+%\centering
+%\includegraphics[angle=0,height=3.5cm]{/home/allan/Pictures/java5.png}
+%\caption{Saliendo de la aplicaci\'on}
+%\end{figure}
+
+
+
+\section{Conclusiones}
+\begin{enumerate}
+ 
+\item[•] Es fundamental entender el problema y los requerimientos del mismo.
+ 
+\item[•] Es necesario realizar una investigaci\'on previa de las herramientas que se van a utilizar, como bibliotecas, m\'odulos, versiones de java, entre otras.
+ 
+\item[•] Es necesario el uso de m\'odulos con el f\'in de simplificar la programaci\'on, ya que nos permite ordenar el c\'odigo para que desarrollador pueda identificar en que parte de proyecto est\'an los errores.
+ 
+\item[•]  Es recomendable el uso de control de versiones como Gguit, ya que permite ir guardando los cambios que se realizan en el c\'odigo, y permitir que otros programadores aporten sus correciones y recomendaciones.
+
+\item[•] Es fundamental documentar el c\'odigo, ya podemos identificar  que objetivos fueron cumplidos, cuales no y poder justificar el "porque".
+
+\item[•] Es necesario realizar un manual de usuario con f\'in de que personas que no sean programadores puedan entender el proyecto.
+
+\end{enumerate}
+
+\section{Anexos}
+
+\subsection{C\'odigo Menu Principal}
+
+\begin{lstlisting}
+/**
+					MENU PRINCIPAL DEL CONVERSOR DE UNIDADES
+**/
+public void interfaz() {
+
+		System.out.println("..........Bienvenidos a conversor de unidades...........->");
+		System.out.println("Digite 1 para pasar de Kilometros a las otras unidades..->");
+		System.out.println("Digite 2 para pasar de Metros a las otras unidade.......->");
+		System.out.println("Digite 3 para pasar de Centimetros a las otras unidade...->");
+		System.out.println("Digite 4 para pasar de decimetros a las otras unidade...->");
+		System.out.println("Digite 5 para pasar de micrometros a las otras unidades.->");
+		System.out.println("Digite 6 para pasar de nanometros a las otras unidades..->");
+		System.out.println("Digite 7 para pasar de Angstroms a las otras unidades...->");
+		System.out.println("Digite 8 para pasar de milimetros a las otras unidades..->");
+		System.out.println("Digite 9 para ver el manual de usuario..->");
+		System.out.println("Digite 10 si desea salir...->");
+		System.out.println("\n");
+
+	}
+
+\end{lstlisting}
+
+\subsection{C\'odigo Sub Menu}
+
+\begin{lstlisting}
+/**
+					MENU PRINCIPAL DEL CONVERSOR DE UNIDADES
+**/
+public void submenu_kilometros() {
+
+		System.out.println("1 Metros..->");
+		System.out.println("2 Centimetros.......->");
+		System.out.println("3 Decimetros........->");
+		System.out.println("4 Milimetros........->");
+		System.out.println("5 Micrometros........->");
+		System.out.println("6 Nanometros.........->");
+		System.out.println("7 Angstroms..........->");
+		System.out.println("8 Menu principal->");
+		System.out.println("8 Menu principal->");
+		
+		
+
+	}
+
+\end{lstlisting}
+
+
+\subsection{Secci\'on de Figuras}
+%\label{sect:figures}
+
+En est\'a secci\'on se van a mostrar mediante ilustraciones, la ejecuci\'on del proyecto programado as\'i de como las funcionalidades de las diferentes diferentes opciones. 
+
+\begin{figure}[h!]
+
+\centering
+\fbox{
+\includegraphics[height=9.5cm]{/home/allan/Pictures/flujo.png}
+}
+\caption{Diagrama de flujo conversor de unidades} 
+
+\end{figure}
+
+
+
+\begin{figure}[h]
+
+\centering
+\fbox{
+\includegraphics[height=2cm]{/home/allan/Pictures/java1.png}
+}
+\caption{Compilando Conversor de Unidades} 
+
+\end{figure}
+
+
+\begin{figure}[h!]
+\centering
+\fbox{
+\includegraphics[height=5.5cm]{/home/allan/Pictures/java2.png}
+}
+\caption{Interfaz gr\'afica del Conversor de Unidades} 
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\fbox{
+\includegraphics[height=7.5cm]{/home/allan/Pictures/java3.png}
+}
+\caption{Ingresando a la unidad de origen Kilometros}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\fbox{
+\includegraphics[height=7.5cm]{/home/allan/Pictures/java4.png}
+}
+\caption{Digitando la unidad destino, la cantidad en kilometros y obteniendo su equivalente en metros}
+
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\fbox{\includegraphics[height=7.5cm]{/home/allan/Pictures/java7.png}}
+\caption{Tratamiendo de excepciones}
+
+\end{figure}
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
